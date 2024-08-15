@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сырых_Кластеры</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="clusterCanvas" width="600" height="600"></canvas>
+    <script th:inline="javascript">
+        // Sample data - coordinates and colors
+		console.log("test");
+		
+		
+		var stringArray = /*[[${colors}]]*/ [];
+
+		/* Пример использования массива строк */
+		for (var i = 0; i < stringArray.length; i++) {
+			console.log(stringArray[i]);
+		}
+	
+		var coordinates = /*[[${coordinates}]]*/ [];
+		var colors = /*[[${colors}]]*/ [];
+        // Function to draw clusters on canvas
+        function drawClusters() {
+            const canvas = document.getElementById("clusterCanvas");
+            const ctx = canvas.getContext("2d");
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw points
+            for (let i = 0; i < coordinates[0].length; i++) {
+                const x = (coordinates[0][i] + 0) * 100; // Scale x-coordinate
+                const y = (coordinates[1][i] + 0) * 100; // Scale y-coordinate
+                ctx.fillStyle = colors[i];
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Call function to draw clusters when page loads
+        drawClusters();
+    </script>
+</body>
+</html>
