@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сырых_Кластеры</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            margin: 10px; /* Добавим отступ между канвасами */
+            display: inline-block; /* Позволяет полям оставаться рядом */
+        }
+        .canvas-label {
+            text-align: left;
+            font-weight: bold;
+            display: block; /* Для установки подписей над полями */
+            margin-bottom: 5px; /* Добавим небольшой отступ между подписями и полями */
+        }
+    </style>
+</head>
+<body>
+<div class="canvas-label">Ансамбль на основе голосования CART, KNN и логистическая регрессия</div>
+<canvas id="clusterCanvas1" width="600" height="600"></canvas>
+<div class="canvas-label">HDBSCAN</div>
+<canvas id="clusterCanvas2" width="600" height="600"></canvas>
+<div class="canvas-label">Градиентный бустинг</div>
+<canvas id="clusterCanvas3" width="600" height="600"></canvas>
+<div class="canvas-label">Classification And Regression Tree(CART)</div>
+<canvas id="clusterCanvas4" width="600" height="600"></canvas>
+<script th:inline="javascript">
+    // Sample data - coordinates and colors
+    console.log("test");
+
+    var stringArray = /*[[${colors1}]]*/ [];
+
+    /* Пример использования массива строк */
+    for (var i = 0; i < stringArray.length; i++) {
+        console.log(stringArray[i]);
+    }
+
+    var coordinates = /*[[${coordinates}]]*/ [];
+    var colors1 = /*[[${colors1}]]*/ [];
+    var colors2 = /*[[${colors2}]]*/ [];
+    var colors3 = /*[[${colors3}]]*/ [];
+    var colors4 = /*[[${colors4}]]*/ [];
+    // Function to draw clusters on canvas
+    function drawCluster1() {
+        const canvas = document.getElementById("clusterCanvas1");
+        const ctx = canvas.getContext("2d");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw points
+        for (let i = 0; i < coordinates[0].length; i++) {
+            const x = (coordinates[0][i] + 0) * 100; // Scale x-coordinate
+            const y = (6 - coordinates[1][i] + 0) * 100; // Scale y-coordinate
+            ctx.fillStyle = colors1[i];
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function drawCluster2() {
+        const canvas = document.getElementById("clusterCanvas2");
+        const ctx = canvas.getContext("2d");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw points
+        for (let i = 0; i < coordinates[0].length; i++) {
+            const x = (coordinates[0][i] + 0) * 100; // Scale x-coordinate
+            const y = (6 - coordinates[1][i] + 0) * 100; // Scale y-coordinate
+            ctx.fillStyle = colors2[i];
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function drawCluster3() {
+        const canvas = document.getElementById("clusterCanvas3");
+        const ctx = canvas.getContext("2d");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw points
+        for (let i = 0; i < coordinates[0].length; i++) {
+            const x = (coordinates[0][i] + 0) * 100; // Scale x-coordinate
+            const y = (6 - coordinates[1][i] + 0) * 100; // Scale y-coordinate
+            ctx.fillStyle = colors3[i];
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function drawCluster4() {
+        const canvas = document.getElementById("clusterCanvas4");
+        const ctx = canvas.getContext("2d");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw points
+        for (let i = 0; i < coordinates[0].length; i++) {
+            const x = (coordinates[0][i] + 0) * 100; // Scale x-coordinate
+            const y = (6 - coordinates[1][i] + 0) * 100; // Scale y-coordinate
+            ctx.fillStyle = colors4[i];
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+
+    // Call function to draw clusters for all canvases when page loads
+    drawCluster1();
+    drawCluster2();
+    drawCluster3();
+    drawCluster4();
+</script>
+</body>
+</html>
